@@ -1,24 +1,25 @@
-# Gestao_de_Inventario
- Um projeto para controlar o estoque de produtos em uma empresa, incluindo funcionalidades para adicionar, remover e consultar itens em estoque.
 
-## Funcionalidades Principais
+# Gestão de Inventário
 
-### Cadastro de Usuários:
+## Descrição
 
-Usuários podem se registrar no sistema e escolher entre três perfis diferentes:
-- Participante: Pode visualizar eventos disponíveis e se inscrever.
-- Palestrante: Pode ser associado a eventos e visualizar suas palestras.
-- Administrador: Possui acesso total ao sistema, podendo criar, editar e excluir eventos, além de gerenciar usuários e suas permissões.
+Este projeto tem como objetivo realizar a gestão do estoque de produtos em uma empresa, permitindo o controle de entrada e saída de itens. Ele oferece funcionalidades para adicionar, remover e consultar produtos no estoque.
 
-### Cadastro e Edição de Eventos:
+## Funcionalidades
 
-Administradores podem criar e gerenciar eventos, definindo detalhes como título, data de início e fim, local, descrição e carga horária, .
-Cada evento pode ter um ou mais palestrantes associados, que serão responsáveis por conduzir palestras ou atividades relacionadas ao evento.
+- **Adicionar Produto**: Insere novos produtos no estoque.
+- **Remover Produto**: Remove produtos existentes no estoque.
+- **Consultar Estoque**: Exibe os produtos atualmente disponíveis no estoque, com suas quantidades.
 
-### Inscrição em Eventos:
+## Classes
 
-Participantes podem se inscrever nos eventos disponíveis, garantindo sua vaga nas palestras de interesse.
+- **Usuário**: Representa os usuários do sistema, com permissões para gerenciar o inventário.
+- **Produto**: Define os produtos disponíveis no estoque, com atributos como nome, código e quantidade.
+- **Entrada de Produto**: Registra a entrada de novos itens no estoque.
+- **Saída de Produto**: Registra a retirada de itens do estoque.
 
 ## Tecnologias Utilizadas
-- PHP
-- Laravel
+
+- (em estudo)
+-  (em estudo)
+-   (em estudo)
