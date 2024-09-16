@@ -11,6 +11,6 @@ class Animal extends Model
     }
 
     public function consultarInformacoes() {
-        return "Nome: $this->nome, Tipo: $this->tipo, Raça: $this->raca, Idade: $this->idade";
+       // A ser implementado
     }
 }
