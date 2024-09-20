@@ -1,5 +1,9 @@
+<?php
+
+// Executar 'php artisan install:api' para criar este arquivo
+
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PetshopUserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductEntryController;
 use App\Http\Controllers\ProductExitController;
 use App\Http\Controllers\FornecedorController;
@@ -8,19 +12,19 @@ use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas Públicas (Sem Autenticação)
-Route::post('/register', [PetshopUserController::class, 'store']);
-Route::post('/login', [PetshopUserController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 // Rotas Protegidas (Requer Autenticação via Sanctum)
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/logout', [PetshopUserController::class, 'logout']);
-    Route::post('/validate-token', [PetshopUserController::class, 'validateToken']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/validate-token', [AuthController::class, 'validateToken']);
 
     // Rotas para Usuários
-    Route::get('/users', [PetshopUserController::class, 'index']);
-    Route::get('/users/{id}', [PetshopUserController::class, 'show']);
-    Route::put('/users/{id}', [PetshopUserController::class, 'update']);
-    Route::delete('/users/{id}', [PetshopUserController::class, 'destroy']);
+    Route::get('/users', [AuthController::class, 'index']);
+    Route::get('/users/{id}', [AuthController::class, 'show']);
+    Route::put('/users/{id}', [AuthController::class, 'update']);
+    Route::delete('/users/{id}', [AuthController::class, 'destroy']);
 
     // Rotas para Produtos
     Route::get('/products', [ProductController::class, 'index']);
