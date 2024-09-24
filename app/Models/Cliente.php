@@ -8,11 +8,9 @@ class Cliente extends Model
 {
     protected $fillable = ['nome', 'contato', 'email'];
 
-    public function registrarCliente() {
-        // A ser implementado
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class);
     }
-
-    public function consultarHistoricoCompras() {
-        // A ser implementado
-    }
+    
 }

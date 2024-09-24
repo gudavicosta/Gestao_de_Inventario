@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductExitController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\VendaController;
+use App\Http\Controllers\PedidoEntradaController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas Públicas (Sem Autenticação)
@@ -32,25 +34,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/products/{id}', [ProductController::class, 'show']);
     Route::put('/products/{id}', [ProductController::class, 'update']);
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-    Route::post('/products/{id}/add-stock', [ProductController::class, 'adicionarEstoque']);
-    Route::post('/products/{id}/remove-stock', [ProductController::class, 'removerEstoque']);
     Route::post('/products/{id}/update-price', [ProductController::class, 'atualizarPreco']);
 
-    // Rotas para Entrada de Produtos
-    Route::get('/product-entries', [ProductEntryController::class, 'index']);
-    Route::post('/product-entries', [ProductEntryController::class, 'store']);
-    Route::get('/product-entries/{id}', [ProductEntryController::class, 'show']);
-    Route::put('/product-entries/{id}', [ProductEntryController::class, 'update']);
-    Route::delete('/product-entries/{id}', [ProductEntryController::class, 'destroy']);
-    Route::post('/product-entries/{id}/register', [ProductEntryController::class, 'registrarEntrada']);
-
-    // Rotas para Saída de Produtos
-    Route::get('/product-exits', [ProductExitController::class, 'index']);
-    Route::post('/product-exits', [ProductExitController::class, 'store']);
-    Route::get('/product-exits/{id}', [ProductExitController::class, 'show']);
-    Route::put('/product-exits/{id}', [ProductExitController::class, 'update']);
-    Route::delete('/product-exits/{id}', [ProductExitController::class, 'destroy']);
-    Route::post('/product-exits/{id}/register', [ProductExitController::class, 'registrarSaida']);
 
     // Rotas para Fornecedores
     Route::get('/fornecedores', [FornecedorController::class, 'index']);
@@ -58,6 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/fornecedores/{id}', [FornecedorController::class, 'show']);
     Route::put('/fornecedores/{id}', [FornecedorController::class, 'update']);
     Route::delete('/fornecedores/{id}', [FornecedorController::class, 'destroy']);
+
     
     // Rotas para Clientes
     Route::get('/clientes', [ClienteController::class, 'index']);
@@ -65,13 +51,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/clientes/{id}', [ClienteController::class, 'show']);
     Route::put('/clientes/{id}', [ClienteController::class, 'update']);
     Route::delete('/clientes/{id}', [ClienteController::class, 'destroy']);
-    Route::get('/clientes/{id}/historico', [ClienteController::class, 'consultarHistoricoCompras']);
+   
 
-    // Rotas para Animais
-    Route::get('/animals', [AnimalController::class, 'index']);
-    Route::post('/animals', [AnimalController::class, 'store']);
-    Route::get('/animals/{id}', [AnimalController::class, 'show']);
-    Route::put('/animals/{id}', [AnimalController::class, 'update']);
-    Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);
-    Route::get('/animals/{id}/info', [AnimalController::class, 'consultarInformacoes']);
+    Route::post('/vendas', [VendaController::class, 'store']);
+    Route::get('/vendas/{id}', [VendaController::class, 'show']);
+    
+    
+    Route::get('/pedido-entradas', [PedidoEntradaController::class, 'index']);
+    Route::post('/pedido-entradas', [PedidoEntradaController::class, 'store']);
+    Route::get('/pedido-entradas/{id}', [PedidoEntradaController::class, 'show']);
+
 });

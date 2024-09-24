@@ -41,10 +41,5 @@ class ClienteController extends Controller
         return response()->json(null, 204);
     }
 
-    // Consultar o histórico de compras de um cliente
-    public function consultarHistoricoCompras($id)
-    {
-        $cliente = Cliente::findOrFail($id);
-        // Lógica para consultar o histórico
-    }
+    
 }

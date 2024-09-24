@@ -10,11 +10,5 @@ class Fornecedor extends Model
 
     protected $table = 'fornecedores';
 
-    public function registrarFornecedor() {
-        // A ser implementado
-    }
-
-    public function atualizarInformacoes() {
-        // A ser implementado
-    }
+    
 }

@@ -4,26 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
     // Listar todos os produtos
     public function index()
     {
-        return Product::all();
+        return ProductResource::collection(Product::with('fornecedor')->get());
     }
 
     // Criar um novo produto
     public function store(Request $request)
     {
         $product = Product::create($request->all());
-        return response()->json($product, 201);
+        return new ProductResource($product); 
     }
 
     // Mostrar um produto específico
     public function show($id)
     {
-        return Product::findOrFail($id);
+        $product = Product::with('fornecedor')->findOrFail($id);
+        return new ProductResource($product);
     }
 
     // Atualizar um produto existente
@@ -31,7 +33,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->update($request->all());
-        return response()->json($product, 200);
+        return new ProductResource($product);
     }
 
     // Deletar um produto
@@ -47,6 +49,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->preco = $request->input('novoPreco');
         $product->save();
-        return response()->json($product, 200);
+        return new ProductResource($product); 
     }
 }
