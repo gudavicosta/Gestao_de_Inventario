@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('contato');
+            $table->string('telefone');
             $table->string('email')->unique(); // Garantindo que o e-mail seja único
             $table->timestamps();
         });

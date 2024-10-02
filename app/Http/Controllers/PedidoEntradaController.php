@@ -14,7 +14,7 @@ class PedidoEntradaController extends Controller
         // Validação dos dados de entrada
         $request->validate([
             'produto_id' => 'required|exists:products,id',
-            'fornecedor' => 'required|string',
+            'marca' => 'required|string',
             'quantidade' => 'required|integer|min:1',
         ]);
 

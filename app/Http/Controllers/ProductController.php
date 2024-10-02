@@ -11,30 +11,74 @@ class ProductController extends Controller
     // Listar todos os produtos
     public function index()
     {
-        return ProductResource::collection(Product::with('fornecedor')->get());
+        return ProductResource::collection(Product::all());
+
     }
 
     // Criar um novo produto
     public function store(Request $request)
-    {
-        $product = Product::create($request->all());
-        return new ProductResource($product); 
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'categoria' => 'required|string|max:255',
+        'preco' => 'required|numeric',
+        'quantidadeEmEstoque' => 'required|integer',
+        'marca' => 'required|string|max:255',
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  // Validação da imagem
+    ]);
+
+    $data = $request->all();
+
+    // Salvar a imagem, se existir
+    if ($request->hasFile('imagem')) {
+        $imagePath = $request->file('imagem')->store('imagens_produtos', 'public');
+        $data['imagem'] = $imagePath;  // Salvar o caminho da imagem no banco
     }
+
+    $product = Product::create($data);
+
+    return new ProductResource($product);
+}
+
+
 
     // Mostrar um produto específico
     public function show($id)
     {
-        $product = Product::with('fornecedor')->findOrFail($id);
-        return new ProductResource($product);
+        $product = Product::findOrFail($id);
+        return response()->json($product);
     }
 
     // Atualizar um produto existente
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nome' => 'string|max:255',
+            'categoria' => 'string|max:255',
+            'preco' => 'numeric',
+            'quantidadeEmEstoque' => 'integer',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+        ]);
+
         $product = Product::findOrFail($id);
-        $product->update($request->all());
-        return new ProductResource($product);
+        $data = $request->all();
+
+        // Salvar a imagem, se existir
+        if ($request->hasFile('imagem')) {
+            // Apagar a imagem antiga, se existir
+            if ($product->imagem) {
+                Storage::disk('public')->delete($product->imagem);
+            }
+
+            $imagePath = $request->file('imagem')->store('imagens_produtos', 'public');
+            $data['imagem'] = $imagePath;
+        }
+
+        $product->update($data);
+
+        return response()->json($product, 200);
     }
+
 
     // Deletar um produto
     public function destroy($id)

@@ -10,7 +10,7 @@ class PedidoEntradaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'fornecedor' => $this->fornecedor,
+            'marca' => $this->fornecedor,
             'quantidade' => $this->quantidade,
             'produto' => [
                 'nome' => $this->produto->nome,
