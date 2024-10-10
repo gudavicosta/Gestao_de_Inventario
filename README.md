@@ -1,7 +1,7 @@
 Gestão de Inventário
 Descrição
 
-Este projeto tem como objetivo realizar a gestão do estoque de produtos em uma empresa, permitindo o controle de entrada e saída de itens. Ele oferece funcionalidades para adicionar, remover e consultar produtos no estoque, além de gerar relatórios de inventário e enviar notificações de estoque quando os níveis atingem valores críticos.
+Este projeto tem como objetivo realizar a gestão do estoque de produtos em um Petshop, permitindo o controle de entrada e saída de itens. Ele oferece funcionalidades para adicionar, remover e consultar produtos no estoque, além de gerar relatórios de inventário e enviar notificações de estoque quando os níveis atingem valores críticos.
 Funcionalidades
 
     Adicionar Produto: Insere novos produtos no estoque.
